@@ -1,17 +1,17 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: apps/v1 # apiVersion 명세
+kind: Deployment # 구성 파일이 Deployment 객체임을 명시
 metadata:
-  name: second-app-deployment
+  name: second-app-deployment # Deployment 객체 이름 설정
 spec:
-  replicas: 1
+  replicas: 1 # 파드의 레플리카 셋 몇 개할지 설정
   selector:
     matchLabels:
-      app: second-app
-  template:
+      app: second-app # 라벨(k:v)이 맞는 파드들을 이 Deployment 객체가 책임지겠다를 명시 
+  template: # 파드의 템플릿은 어떻게 할 것인가?
     metadata:
       labels:
-        app: second-app
-    spec:
-      containers:
-        - name: second-node
-          image: juniper0917/kub-first-app
+        app: second-app # 라벨 설정
+    spec: # 파드의 스펙
+      containers: # 지금은 컨테이너 하나만
+        - name: second-node # 컨테이너 이름
+          image: juniper0917/kub-first-app # 컨테이너 베이스 이미지
