@@ -2,6 +2,8 @@ apiVersion: apps/v1 # apiVersion 명세
 kind: Deployment # 구성 파일이 Deployment 객체임을 명시
 metadata:
   name: second-app-deployment # Deployment 객체 이름 설정
+  labels: 
+    - group: example
 spec:
   replicas: 1 # 파드의 레플리카 셋 몇 개할지 설정
   selector:
@@ -25,3 +27,6 @@ spec:
 
 # kubectl delete -f=deployment.yaml
 # 위 명령어로 쿠버네티스 클러스터에서 구성 제거 가능
+
+# kubectl delete -l group=example
+# 위 명령어로 label로 클러스터에서 구성 제거 가능
