@@ -5,8 +5,11 @@ metadata:
 spec:
   replicas: 1 # 파드의 레플리카 셋 몇 개할지 설정
   selector:
-    matchLabels:
-      app: second-app # 라벨(k:v)이 맞는 파드들을 이 Deployment 객체가 책임지겠다를 명시 
+    # matchLabels:
+    #   app: second-app # 라벨(k:v)이 맞는 파드들을 이 Deployment 객체가 책임지겠다를 명시 
+    matchExpressions:
+      - {key: app, operator: In, values: [second-app, first-app]} # label key가 app 이고, values 범위안에 들어가는 pod를 select 해라
+      # operator에는 In, NotIn, Exists, DoNotExist가 있다.
   template: # 파드의 템플릿은 어떻게 할 것인가?
     metadata:
       labels:
